@@ -1,13 +1,13 @@
-import React, { useEffect, useRef } from 'react';
-import Typed from 'typed.js';
-import { typedStrings } from '../data/portfolioData';
+import React, { useEffect, useRef } from "react";
+import Typed from "typed.js";
+import { typedStrings } from "../data/portfolioData";
 
 const Hero: React.FC = () => {
   const typedRef = useRef<HTMLSpanElement>(null);
-  
+
   useEffect(() => {
     if (!typedRef.current) return;
-    
+
     const typed = new Typed(typedRef.current, {
       strings: typedStrings,
       typeSpeed: 80,
@@ -27,21 +27,26 @@ const Hero: React.FC = () => {
       px-4 md:px-8 lg:px-16 data-scroll-section"
       data-scroll
     >
-      <div className="text-center mx-10 lg:mx-20 md:text-left md:w-1/2 space-y-4" data-scroll data-scroll-speed="1">
-        <h1 className="text-3xl md:text-4xl font-bold text-gray-800 dark:text-white transition-colors duration-300">
+      <div
+        className="text-center mx-10 lg:mx-20 md:text-left md:w-1/2 space-y-4"
+        data-scroll
+        data-scroll-speed="1"
+      >
+        <h1 className="text-2xl md:text-4xl font-bold text-gray-800 dark:text-white transition-colors duration-300">
           Hi, I'm{" "}
           <span className="block text-5xl md:text-6xl text-orange-600 dark:text-orange-500 transition-colors duration-300">
-            Himanshu K
+            Himanshu
           </span>
+          <span className="text-4xl md:text-5xl">Kumawat</span>
         </h1>
-        <p className="text-xl md:text-2xl text-gray-700 dark:text-gray-300 transition-colors duration-300">
+        <p className="text-2xl md:text-2xl text-gray-700 dark:text-gray-300 transition-colors duration-300">
           I'm a{" "}
           <span
             ref={typedRef}
             className="text-orange-600 dark:text-orange-500 transition-colors duration-300"
           ></span>
         </p>
-        <div className="flex flex-wrap gap-4 justify-center md:justify-start">
+        <div className="flex   flex-wrap gap-4 justify-center md:justify-start">
           <a
             href="/resume.pdf"
             download="Himanshu"
@@ -58,7 +63,11 @@ const Hero: React.FC = () => {
           </a>
         </div>
       </div>
-      <div className="mt-8 md:mt-0 md:w-1/2 flex justify-center" data-scroll data-scroll-speed="2">
+      <div
+        className="mt-8 md:mt-0 md:w-1/2 flex justify-center"
+        data-scroll
+        data-scroll-speed="2"
+      >
         <img
           src="/profile4.jpg"
           alt="Profile"

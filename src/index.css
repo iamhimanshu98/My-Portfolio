@@ -2,23 +2,60 @@
 @tailwind components;
 @tailwind utilities;
 
+html, body{
+  @apply custom-scrollbar
+}
+
 @layer utilities {
-    .custom-scrollbar::-webkit-scrollbar {
-      width: 5px;
-    }
-  
-    .custom-scrollbar::-webkit-scrollbar-track {
-      background: transparent;
-    }
-  
-    .custom-scrollbar::-webkit-scrollbar-thumb {
-      background-color: #ea580c;
-      border-radius: 10px;
-    }
+  .custom-scrollbar::-webkit-scrollbar {
+    width: 6px; /* Adjust width */
   }
 
-  html.has-scroll-init .c-scrollbar {
-    z-index: 100 !important;
+    .custom-scrollbar::-webkit-scrollbar-track {
+      background: #ffffff !important; /* Light mode (white track) */
+    }
+  
+    .dark .custom-scrollbar::-webkit-scrollbar-track {
+      background: #111828 !important; /* Dark mode (dark track) */
+    }
+
+  .custom-scrollbar::-webkit-scrollbar-thumb {
+    background-color: #ea580c; /* Orange scrollbar handle */
+    border-radius: 10px;
+    transition: background-color 0.3s ease;
   }
+
+  .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+    background-color: #d94806;
+  }
+}
+
+/* Ensure Locomotive Scroll bar visibility */
+html.has-scroll-init .c-scrollbar {
+  z-index: 100 !important;
+  opacity: 0.8;
+  background: transparent !important; /* Ensures full blending */
+}
   
-  
+
+/* For Chrome, Edge, Safari */
+.scrollbar-thumb-only::-webkit-scrollbar {
+  width: 8px; /* or any width you like */
+}
+
+.scrollbar-thumb-only::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.scrollbar-thumb-only::-webkit-scrollbar-thumb {
+  background-color: rgba(221, 220, 219, 0.8); /* orange shade */
+  border-radius: 8px;
+  border: 2px solid transparent; /* makes thumb slimmer without showing track */
+  background-clip: content-box;
+}
+
+/* For Firefox */
+.scrollbar-thumb-only {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(230, 230, 230, 0.8) transparent;
+}

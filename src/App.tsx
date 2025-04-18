@@ -1,6 +1,6 @@
 import React, { useRef, useEffect } from "react";
 import { useDarkMode } from "./hooks/useDarkMode";
-import { useLocomotiveScroll } from "./hooks/useLocomotiveScroll";
+import Lenis from "@studio-freight/lenis";
 import ParticleBackground from "./components/ParticleBackground";
 import Navbar from "./components/Navbar";
 import Hero from "./components/Hero";
@@ -13,25 +13,39 @@ import Contact from "./components/Contact";
 function App() {
   const [darkMode, toggleDarkMode] = useDarkMode();
   const containerRef = useRef<HTMLDivElement>(null);
+  const lenisRef = useRef<Lenis | null>(null);
 
-  const scroll = useLocomotiveScroll(containerRef, {
-    smooth: true,
-    smartphone: {
-      smooth: true,
-    },
-    tablet: {
-      smooth: true,
-    },
-  });
+  const handleWheel = (e: WheelEvent) => {
+    if (e.target instanceof HTMLTextAreaElement) {
+      e.stopPropagation();
+    }
+  };
+  
+  useEffect(() => {
+    document.querySelector("textarea")?.addEventListener("wheel", handleWheel);
+    return () => document.querySelector("textarea")?.removeEventListener("wheel", handleWheel);
+  }, []);
 
   useEffect(() => {
-    if (scroll) {
-      const timer = setTimeout(() => {
-        scroll.update();
-      }, 200);
-      return () => clearTimeout(timer);
+    if (!containerRef.current) return;
+
+    const lenis = new Lenis({
+      duration: 1.2,
+      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+      touchMultiplier: window.innerWidth <= 768 ? 2.5 : 1.5,
+      smoothWheel: true,
+    });
+
+    function updateScroll(time: number) {
+      lenis.raf(time);
+      requestAnimationFrame(updateScroll);
     }
-  }, [darkMode, scroll]);
+    requestAnimationFrame(updateScroll);
+
+    lenisRef.current = lenis;
+
+    return () => lenis.destroy(); // Clean up on unmount
+  }, []);
 
   return (
     <>
@@ -39,37 +53,37 @@ function App() {
       <Navbar
         darkMode={darkMode}
         toggleDarkMode={toggleDarkMode}
-        scroll={scroll}
+        scroll={lenisRef.current}
       />
 
-      {/* Main Locomotive Scroll Container */}
+      {/* Main Scroll Container */}
       <div
         ref={containerRef}
         className={`relative min-h-screen ${
           darkMode ? "dark:bg-gray-900" : "bg-white"
         } transition-colors duration-300`}
-        data-scroll-container
       >
-        {/* <ParticleBackground isDarkMode={darkMode} /> */}
+        {/* Particle Background - Uncomment if needed */}
+        <ParticleBackground />
 
-        {/* Offset top padding so content doesn't go under fixed navbar */}
+        {/* Content Sections */}
         <div className="relative z-10 pt-20">
-          <section id="home" data-scroll-section>
+          <section id="home">
             <Hero />
           </section>
-          <section id="education" data-scroll-section>
+          <section id="education">
             <Education />
           </section>
-          <section id="experience" data-scroll-section>
+          <section id="experience">
             <Experience />
           </section>
-          <section id="skills" data-scroll-section>
+          <section id="skills">
             <Skills />
           </section>
-          <section id="projects" data-scroll-section>
+          <section id="projects">
             <Projects />
           </section>
-          <section id="contact" data-scroll-section>
+          <section id="contact">
             <Contact />
           </section>
         </div>

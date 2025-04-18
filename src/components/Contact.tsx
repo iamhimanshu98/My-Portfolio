@@ -81,18 +81,20 @@ const Contact: React.FC = () => {
                 Message
               </label>
               <textarea
-                id="message"
-                value={formData.message}
-                onChange={(e) =>
-                  setFormData({ ...formData, message: e.target.value })
-                }
-                rows={6}
-                placeholder="What you want to say?"
-                className="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-600 
+              id="message"
+              value={formData.message}
+              onChange={(e) =>
+                setFormData({ ...formData, message: e.target.value })
+              }
+              rows={6}
+              maxLength={320}
+              placeholder="What you want to say?"
+              className="scrollbar-thumb-only w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-600 
                 bg-white dark:bg-gray-700 text-gray-900 dark:text-white focus:outline-none focus:ring-1 focus:ring-orange-500 
-                focus:border-transparent transition-colors duration-300 resize-none mb-8 custom-scrollbar"
-                required
-              ></textarea>
+                focus:border-transparent transition-colors duration-300 resize-none mb-8 overflow-y-auto"
+              required
+            ></textarea>
+
             </div>
 
             <button
@@ -113,7 +115,7 @@ const Contact: React.FC = () => {
               <a
                 key={contact.name}
                 href={contact.url}
-                className="flex items-center gap-3 p-4 bg-gray-50 dark:bg-gray-800 rounded-lg 
+                className="flex items-center gap-3 p-1 md:p-2 bg-gray-50 dark:bg-gray-800 rounded-lg 
                 text-gray-700 dark:text-gray-300 text-lg hover:text-orange-600 dark:hover:text-orange-500 
                 transition-colors duration-300 group"
                 target={

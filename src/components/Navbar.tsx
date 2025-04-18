@@ -4,16 +4,18 @@ import { Moon, Sun } from 'lucide-react';
 interface NavbarProps {
   darkMode: boolean;
   toggleDarkMode: () => void;
-  scroll: any; 
+  scroll: any;
 }
 
 const Navbar: React.FC<NavbarProps> = ({ darkMode, toggleDarkMode, scroll }) => {
   const handleScroll = (id: string) => {
-    scroll?.scroll?.scrollTo(`#${id}`, {
-      offset: -80,
-      duration: 800,
-      easing: [0.25, 0.0, 0.35, 1.0],
-    });
+    if (scroll) {
+      scroll.scrollTo(`#${id}`, {
+        offset: -80,
+        duration: 1.2, // Adjusted for smooth Lenis scrolling
+        easing: (t: number) => Math.min(1, 1.001 - Math.pow(2, -10 * t)), // Smooth easing curve
+      });
+    }
   };
 
   return (
@@ -21,7 +23,7 @@ const Navbar: React.FC<NavbarProps> = ({ darkMode, toggleDarkMode, scroll }) => 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between h-16 items-center">
           <a
-            href="#"
+            href="#home"
             className="text-2xl font-bold text-gray-800 dark:text-white transition-colors duration-300"
             onClick={() => handleScroll('home')}
           >

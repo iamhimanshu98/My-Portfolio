@@ -3,11 +3,7 @@ import Particles from 'react-tsparticles';
 import { loadFull } from 'tsparticles';
 import type { Engine } from 'tsparticles-engine';
 
-interface ParticleBackgroundProps {
-  isDarkMode: boolean;
-}
-
-const ParticleBackground: React.FC<ParticleBackgroundProps> = ({ isDarkMode }) => {
+const ParticleBackground: React.FC = () => {
   const [isMobile, setIsMobile] = useState(false);
 
   const particlesInit = useCallback(async (engine: Engine) => {
@@ -21,66 +17,33 @@ const ParticleBackground: React.FC<ParticleBackgroundProps> = ({ isDarkMode }) =
     return () => window.removeEventListener('resize', checkMobile);
   }, []);
 
-  const orangeParticleOptions = {
+  const optimizedOrangeParticles = {
     fullScreen: { enable: false },
-    background: {
-      color: { value: 'transparent' },
-    },
+    background: { color: { value: 'transparent' } },
     particles: {
-      color: { value: '#f97316' },
+      color: { value: '#f97316' }, // Orange color
       move: {
         enable: true,
-        speed: isMobile ? 0.6 : 1.2,
-        outModes: { default: 'bounce' as const }
-
+        speed: isMobile ? 0.4 : 1.0, // Optimized for performance
+        angle: { value: 120, offset: 0 }, // Creates a swirling effect
+        direction: 'none' as const,
+        outModes: { default: 'bounce' as const },
       },
       number: {
-        value: isMobile ? 25 : 60,
+        value: isMobile ? 15 : 40, // Lower particle count for mobile
         density: { enable: true, area: 800 },
       },
-      opacity: { value: 0.7 },
-      size: { value: isMobile ? 2 : 3, random: true },
+      opacity: { value: 0.6 },
+      size: { value: isMobile ? 1.5 : 2.5, random: true },
       shape: { type: 'circle' },
-      collisions: { enable: false },
-      links: { enable: false },
+      collisions: { enable: false }, // Optimized by disabling collisions
+      links: { enable: false }, // No linking for better performance
     },
-    detectRetina: true,
-  };
-
-  const whiteParticleOptions = {
-    fullScreen: { enable: false },
-    background: {
-      color: { value: 'transparent' },
-    },
-    particles: {
-      color: { value: '#ffffff' },
-      move: {
-        enable: true,
-        speed: isMobile ? 0.3 : 0.6,
-        outModes: { default: 'bounce' as const },
-        random: true,
-      },
-
-      number: {
-        value: isMobile ? 15 : 40,
-        density: { enable: true, area: 1000 },
-      },
-      opacity: { value: 0.5 },
-      size: { value: isMobile ? 1.5 : 2, random: true },
-      shape: { type: 'circle' },
-      collisions: { enable: false },
-      links: { enable: true, distance: isMobile ? 80 : 120 },
-    },
-    detectRetina: true,
+    detectRetina: false, // Disabled high-resolution rendering for efficiency
   };
 
   return (
-    <>
-      <Particles id="orangeParticles" init={particlesInit} className="absolute inset-0 z-0" options={orangeParticleOptions} />
-      {isDarkMode && (
-        <Particles id="whiteParticles" init={particlesInit} className="absolute inset-0 z-0" options={whiteParticleOptions} />
-      )}
-    </>
+    <Particles id="orangeParticles" init={particlesInit} className="absolute inset-0 z-0" options={optimizedOrangeParticles} />
   );
 };
 
