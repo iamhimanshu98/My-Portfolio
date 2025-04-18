@@ -6,8 +6,7 @@ const Projects: React.FC = () => {
   return (
     <div 
       id="projects" 
-      className="py-16 px-4 md:px-8 lg:px-16 bg-gray-50/50 dark:bg-gray-800/50 transition-colors duration-300 data-scroll-section"
-      data-scroll
+      className="py-16 px-4 md:px-8 lg:px-16 bg-gray-50/50 dark:bg-gray-800/50 transition-colors duration-300"
     >
       <h2 className="text-3xl font-bold text-center mb-8 text-gray-800 dark:text-white transition-colors duration-300">
         Projects
@@ -17,8 +16,6 @@ const Projects: React.FC = () => {
           <div
             key={project.title}
             className="bg-white dark:bg-gray-800 p-6 rounded-lg hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1"
-            data-scroll
-            data-scroll-speed={0.5 + (index * 0.1)}
           >
             <div className="mb-4">{project.icon}</div>
             <h3 className="text-xl font-semibold mb-2 text-gray-800 dark:text-white transition-colors duration-300">

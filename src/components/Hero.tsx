@@ -23,7 +23,7 @@ const Hero: React.FC = () => {
   return (
     <div
       id="home"
-      className="pt-24 min-h-[90vh] lg:min-h-[80vh] flex flex-col md:flex-row items-center justify-center 
+      className="pt-6 min-h-[90vh] lg:min-h-[80vh] flex flex-col md:flex-row items-center justify-center 
       px-4 md:px-8 lg:px-16 data-scroll-section"
       data-scroll
     >

@@ -38,8 +38,7 @@ const Skills: React.FC = () => {
   return (
     <div
       id="skills"
-      className="py-16 px-4 md:px-8 lg:px-16 bg-white/30 dark:bg-gray-900/50 transition-colors duration-300 data-scroll-section"
-      data-scroll
+      className="py-16 px-4 md:px-8 lg:px-16 bg-white/30 dark:bg-gray-900/50 transition-colors duration-300"
     >
       <h2 className="text-3xl font-bold text-center mb-8 text-gray-800 dark:text-white transition-colors duration-300 flex items-center justify-center gap-2">
         <Award className="w-8 h-8 text-orange-600" />
@@ -51,8 +50,6 @@ const Skills: React.FC = () => {
             <div
               key={category}
               className="bg-gray-50 dark:bg-gray-800 p-8 rounded-lg shadow-sm hover:shadow-md transition-all duration-300"
-              data-scroll
-              data-scroll-speed="0.8"
             >
               <h3 className="text-lg font-semibold mb-4 text-gray-800 dark:text-white transition-colors duration-300 flex items-center gap-2">
                 {getIcon(category)}

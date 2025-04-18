@@ -50,7 +50,7 @@ function App() {
         } transition-colors duration-300`}
         data-scroll-container
       >
-        {/* <ParticleBackground isDarkMode={darkMode} /> */}
+        <ParticleBackground isDarkMode={darkMode} />
 
         {/* Offset top padding so content doesn't go under fixed navbar */}
         <div className="relative z-10 pt-20">
