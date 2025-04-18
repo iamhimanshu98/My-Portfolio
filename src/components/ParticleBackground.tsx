@@ -21,7 +21,7 @@ const ParticleBackground: React.FC<ParticleBackgroundProps> = ({ isDarkMode }) =
     return () => window.removeEventListener('resize', checkMobile);
   }, []);
 
-  const orangeParticleOptions = {
+  const optimizedParticleOptions = {
     fullScreen: { enable: false },
     background: {
       color: { value: 'transparent' },
@@ -30,56 +30,27 @@ const ParticleBackground: React.FC<ParticleBackgroundProps> = ({ isDarkMode }) =
       color: { value: '#f97316' },
       move: {
         enable: true,
-        speed: isMobile ? 0.6 : 1.2,
-        outModes: { default: 'bounce' as const }
-
+        speed: isMobile ? 0.3 : 0.8, // Slower movement for better performance
+        path: { enable: true, type: 'circle' }, // Swirling motion
+        direction: 'clockwise',
+        outModes: { default: 'bounce' as const },
       },
       number: {
-        value: isMobile ? 25 : 60,
+        value: isMobile ? 15 : 40, // Fewer particles on mobile
         density: { enable: true, area: 800 },
       },
-      opacity: { value: 0.7 },
-      size: { value: isMobile ? 2 : 3, random: true },
+      opacity: { value: 0.6 },
+      size: { value: isMobile ? 1.5 : 2.5, random: true },
       shape: { type: 'circle' },
-      collisions: { enable: false },
-      links: { enable: false },
-    },
-    detectRetina: true,
-  };
-
-  const whiteParticleOptions = {
-    fullScreen: { enable: false },
-    background: {
-      color: { value: 'transparent' },
-    },
-    particles: {
-      color: { value: '#ffffff' },
-      move: {
-        enable: true,
-        speed: isMobile ? 0.3 : 0.6,
-        outModes: { default: 'bounce' as const },
-        random: true,
-      },
-
-      number: {
-        value: isMobile ? 15 : 40,
-        density: { enable: true, area: 1000 },
-      },
-      opacity: { value: 0.5 },
-      size: { value: isMobile ? 1.5 : 2, random: true },
-      shape: { type: 'circle' },
-      collisions: { enable: false },
-      links: { enable: true, distance: isMobile ? 80 : 120 },
+      collisions: { enable: false }, // Disabling unnecessary effects
+      links: { enable: false }, // No links to reduce strain
     },
     detectRetina: true,
   };
 
   return (
     <>
-      <Particles id="orangeParticles" init={particlesInit} className="absolute inset-0 z-0" options={orangeParticleOptions} />
-      {isDarkMode && (
-        <Particles id="whiteParticles" init={particlesInit} className="absolute inset-0 z-0" options={whiteParticleOptions} />
-      )}
+      <Particles id="optimizedParticles" init={particlesInit} className="absolute inset-0 z-0" options={optimizedParticleOptions} />
     </>
   );
 };
