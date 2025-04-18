@@ -14,24 +14,24 @@ function App() {
   const [darkMode, toggleDarkMode] = useDarkMode();
   const containerRef = useRef<HTMLDivElement>(null);
 
-  // const scroll = useLocomotiveScroll(containerRef, {
-  //   smooth: true,
-  //   smartphone: {
-  //     smooth: true,
-  //   },
-  //   tablet: {
-  //     smooth: true,
-  //   },
-  // });
+  const scroll = useLocomotiveScroll(containerRef, {
+    smooth: true,
+    smartphone: {
+      smooth: true,
+    },
+    tablet: {
+      smooth: true,
+    },
+  });
 
-  // useEffect(() => {
-  //   if (scroll) {
-  //     const timer = setTimeout(() => {
-  //       scroll.update();
-  //     }, 200);
-  //     return () => clearTimeout(timer);
-  //   }
-  // }, [darkMode, scroll]);
+  useEffect(() => {
+    if (scroll) {
+      const timer = setTimeout(() => {
+        scroll.update();
+      }, 200);
+      return () => clearTimeout(timer);
+    }
+  }, [darkMode, scroll]);
 
   return (
     <>
@@ -50,7 +50,7 @@ function App() {
         } transition-colors duration-300`}
         data-scroll-container
       >
-        <ParticleBackground isDarkMode={darkMode} />
+        {/* <ParticleBackground isDarkMode={darkMode} /> */}
 
         {/* Offset top padding so content doesn't go under fixed navbar */}
         <div className="relative z-10 pt-20">
