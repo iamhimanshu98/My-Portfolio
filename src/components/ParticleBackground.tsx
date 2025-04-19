@@ -30,14 +30,14 @@ const ParticleBackground: React.FC = () => {
         outModes: { default: "bounce" as const },
       },
       number: {
-        value: isMobile ? 40 : 80,
+        value: isMobile ? 20 : 50,
         density: { enable: true, area: 800 },
       },
       opacity: { value: 0.7 },
       size: { value: isMobile ? 1.5 : 2.5, random: true },
       shape: { type: "circle" },
       collisions: { enable: false },
-      links: { enable: false },
+      links: { enable: true },
     },
     detectRetina: !isMobile,
   };

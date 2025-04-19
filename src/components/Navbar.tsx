@@ -9,16 +9,27 @@ interface NavbarProps {
 
 const Navbar: React.FC<NavbarProps> = ({ darkMode, toggleDarkMode, scroll }) => {
   const [isAtTop, setIsAtTop] = useState(true);
+  const [showNavbar, setShowNavbar] = useState(true);
+  const [lastScrollY, setLastScrollY] = useState(0);
 
   useEffect(() => {
     const handleScroll = () => {
-      const scrollTop = window.scrollY;
-      setIsAtTop(scrollTop < 100); 
+      const currentScrollY = window.scrollY;
+
+      setIsAtTop(currentScrollY < 100);
+
+      if (currentScrollY > lastScrollY && currentScrollY > 200) {
+        setShowNavbar(false);
+      } else {
+        setShowNavbar(true);
+      }
+
+      setLastScrollY(currentScrollY);
     };
 
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+  }, [lastScrollY]);
 
   const handleScrollToSection = (id: string) => {
     if (scroll) {
@@ -32,10 +43,9 @@ const Navbar: React.FC<NavbarProps> = ({ darkMode, toggleDarkMode, scroll }) => 
 
   return (
     <nav
-      className={`fixed w-full top-0 z-50  shadow-sm transition-colors duration-300
-        ${isAtTop
-          ? 'bg-white/10 dark:bg-gray-900/10'
-          : 'bg-white dark:bg-gray-900'}
+    className={`fixed w-full top-0 z-50 transition-all duration-700 ease-in-out transform shadow-sm
+        ${isAtTop ? 'bg-white/10 dark:bg-gray-900/10' : 'bg-white dark:bg-gray-900'}
+        ${showNavbar ? 'translate-y-0' : '-translate-y-full'}
       `}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
