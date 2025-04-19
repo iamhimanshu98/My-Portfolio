@@ -15,22 +15,11 @@ function App() {
   const containerRef = useRef<HTMLDivElement>(null);
   const lenisRef = useRef<Lenis | null>(null);
 
-  const handleWheel = (e: WheelEvent) => {
-    if (e.target instanceof HTMLTextAreaElement) {
-      e.stopPropagation();
-    }
-  };
-  
-  useEffect(() => {
-    document.querySelector("textarea")?.addEventListener("wheel", handleWheel);
-    return () => document.querySelector("textarea")?.removeEventListener("wheel", handleWheel);
-  }, []);
-
   useEffect(() => {
     if (!containerRef.current) return;
 
     const lenis = new Lenis({
-      duration: 1.2,
+      duration: 0.9,
       easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
       touchMultiplier: window.innerWidth <= 768 ? 2.5 : 1.5,
       smoothWheel: true,
@@ -59,9 +48,7 @@ function App() {
       {/* Main Scroll Container */}
       <div
         ref={containerRef}
-        className={`relative min-h-screen ${
-          darkMode ? "dark:bg-gray-900" : "bg-white"
-        } transition-colors duration-300`}
+        className={`relative min-h-screen ${darkMode ? "dark:bg-gray-900" : "bg-white"} transition-colors duration-300`}
       >
         {/* Particle Background - Uncomment if needed */}
         <ParticleBackground />

@@ -17,7 +17,7 @@ const Contact: React.FC = () => {
   return (
     <div
       id="contact"
-      className="py-16 px-4 md:px-8 lg:px-16 bg-white/30 dark:bg-gray-900/30 transition-colors duration-300"
+      className="py-16 px-4 md:px-8 lg:px-16 transition-colors duration-300"
     >
       <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12">
         {/* Contact Form */}

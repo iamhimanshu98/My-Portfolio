@@ -12,14 +12,14 @@ const Navbar: React.FC<NavbarProps> = ({ darkMode, toggleDarkMode, scroll }) => 
     if (scroll) {
       scroll.scrollTo(`#${id}`, {
         offset: -80,
-        duration: 1.2, // Adjusted for smooth Lenis scrolling
-        easing: (t: number) => Math.min(1, 1.001 - Math.pow(2, -10 * t)), // Smooth easing curve
+        duration: 1.2, 
+        easing: (t: number) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
       });
     }
   };
 
   return (
-    <nav className="fixed w-full top-0 z-50 bg-white dark:bg-gray-900 shadow-sm transition-colors duration-300">
+    <nav className="fixed w-full top-0 z-50  shadow-sm transition-colors duration-300">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between h-16 items-center">
           <a

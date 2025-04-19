@@ -3,11 +3,13 @@
 @tailwind utilities;
 
 html, body{
+  overflow: hidden;
   @apply custom-scrollbar
 }
 
 @layer utilities {
   .custom-scrollbar::-webkit-scrollbar {
+    z-index: 200;
     width: 6px; /* Adjust width */
   }
 
@@ -19,11 +21,11 @@ html, body{
       background: #111828 !important; /* Dark mode (dark track) */
     }
 
-  .custom-scrollbar::-webkit-scrollbar-thumb {
-    background-color: #ea580c; /* Orange scrollbar handle */
-    border-radius: 10px;
-    transition: background-color 0.3s ease;
-  }
+    .custom-scrollbar::-webkit-scrollbar-thumb {
+      background-color: #ea580c; /* Orange scrollbar handle */
+      border-radius: 10px;
+      transition: background-color 0.3s ease;
+    }
 
   .custom-scrollbar::-webkit-scrollbar-thumb:hover {
     background-color: #d94806;

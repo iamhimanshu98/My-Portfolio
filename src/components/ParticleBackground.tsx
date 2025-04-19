@@ -21,25 +21,25 @@ const ParticleBackground: React.FC = () => {
     fullScreen: { enable: false },
     background: { color: { value: 'transparent' } },
     particles: {
-      color: { value: '#f97316' }, // Orange color
+      color: { value: '#f97316' }, 
       move: {
         enable: true,
-        speed: isMobile ? 0.4 : 1.0, // Optimized for performance
-        angle: { value: 120, offset: 0 }, // Creates a swirling effect
+        speed: isMobile ? 0.6 : 1.0, 
+        angle: { value: 120, offset: 0 }, 
         direction: 'none' as const,
         outModes: { default: 'bounce' as const },
       },
       number: {
-        value: isMobile ? 15 : 40, // Lower particle count for mobile
+        value: isMobile ? 40 : 80, 
         density: { enable: true, area: 800 },
       },
-      opacity: { value: 0.6 },
+      opacity: { value: 0.7 },
       size: { value: isMobile ? 1.5 : 2.5, random: true },
       shape: { type: 'circle' },
-      collisions: { enable: false }, // Optimized by disabling collisions
-      links: { enable: false }, // No linking for better performance
+      collisions: { enable: false }, 
+      links: { enable: false }, 
     },
-    detectRetina: false, // Disabled high-resolution rendering for efficiency
+    detectRetina: true,
   };
 
   return (

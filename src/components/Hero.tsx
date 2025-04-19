@@ -30,7 +30,7 @@ const Hero: React.FC = () => {
       <div
         className="text-center mx-10 lg:mx-20 md:text-left md:w-1/2 space-y-4"
         data-scroll
-        data-scroll-speed="1"
+        data-scroll-speed="1" 
       >
         <h1 className="text-2xl md:text-4xl font-bold text-gray-800 dark:text-white transition-colors duration-300">
           Hi, I'm{" "}
@@ -46,7 +46,7 @@ const Hero: React.FC = () => {
             className="text-orange-600 dark:text-orange-500 transition-colors duration-300"
           ></span>
         </p>
-        <div className="flex   flex-wrap gap-4 justify-center md:justify-start">
+        <div className="flex flex-wrap gap-4 justify-center md:justify-start">
           <a
             href="/resume.pdf"
             download="Himanshu"
@@ -66,7 +66,7 @@ const Hero: React.FC = () => {
       <div
         className="mt-8 md:mt-0 md:w-1/2 flex justify-center"
         data-scroll
-        data-scroll-speed="2"
+        data-scroll-speed="2" // Parallax effect for profile image
       >
         <img
           src="/profile4.jpg"
