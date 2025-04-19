@@ -4,7 +4,8 @@
 
 html, body{
   overflow: hidden;
-  @apply custom-scrollbar
+  overflow-y: auto;
+  @apply custom-scrollbar;
 }
 
 @layer utilities {

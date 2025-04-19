@@ -1,6 +1,6 @@
-import React, { useRef, useEffect } from "react";
+import React, { useRef /*, useEffect*/ } from "react";
 import { useDarkMode } from "./hooks/useDarkMode";
-import Lenis from "@studio-freight/lenis";
+// import Lenis from "@studio-freight/lenis";
 import ParticleBackground from "./components/ParticleBackground";
 import Navbar from "./components/Navbar";
 import Hero from "./components/Hero";
@@ -13,8 +13,9 @@ import Contact from "./components/Contact";
 function App() {
   const [darkMode, toggleDarkMode] = useDarkMode();
   const containerRef = useRef<HTMLDivElement>(null);
-  const lenisRef = useRef<Lenis | null>(null);
+  // const lenisRef = useRef<Lenis | null>(null);
 
+  /*
   useEffect(() => {
     if (!containerRef.current) return;
 
@@ -35,6 +36,7 @@ function App() {
 
     return () => lenis.destroy(); // Clean up on unmount
   }, []);
+  */
 
   return (
     <>
@@ -42,15 +44,17 @@ function App() {
       <Navbar
         darkMode={darkMode}
         toggleDarkMode={toggleDarkMode}
-        scroll={lenisRef.current}
+        scroll={null} // lenisRef.current if uncommented
       />
 
       {/* Main Scroll Container */}
       <div
         ref={containerRef}
-        className={`relative min-h-screen ${darkMode ? "dark:bg-gray-900" : "bg-white"} transition-colors duration-300`}
+        className={`relative min-h-screen ${
+          darkMode ? "dark:bg-gray-900" : "bg-white"
+        } transition-colors duration-300`}
       >
-        {/* Particle Background - Uncomment if needed */}
+        {/* Particle Background */}
         <ParticleBackground />
 
         {/* Content Sections */}
