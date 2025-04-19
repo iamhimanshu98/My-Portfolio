@@ -1,9 +1,15 @@
 import React, { useEffect, useRef } from "react";
 import Typed from "typed.js";
 import { typedStrings } from "../data/portfolioData";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+gsap.registerPlugin(ScrollTrigger);
 
 const Hero: React.FC = () => {
   const typedRef = useRef<HTMLSpanElement>(null);
+  const nameRef = useRef<HTMLDivElement>(null);
+  const imageRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     if (!typedRef.current) return;
@@ -20,17 +26,49 @@ const Hero: React.FC = () => {
     };
   }, []);
 
+  // 🚀 Parallax effect using GSAP
+  useEffect(() => {
+    const nameEl = nameRef.current;
+    const imageEl = imageRef.current;
+
+    if (!nameEl || !imageEl) return;
+
+    gsap.to(nameEl, {
+      y: -30,
+      ease: "none",
+      scrollTrigger: {
+        trigger: nameEl,
+        start: "top bottom", // when it enters viewport
+        end: "bottom top",   // until it leaves
+        scrub: true,
+      },
+    });
+
+    gsap.to(imageEl, {
+      y: -50,
+      ease: "none",
+      scrollTrigger: {
+        trigger: imageEl,
+        start: "top bottom",
+        end: "bottom top",
+        scrub: true,
+      },
+    });
+
+    return () => {
+      ScrollTrigger.getAll().forEach(trigger => trigger.kill());
+    };
+  }, []);
+
   return (
     <div
       id="home"
       className="pt-6 min-h-[90vh] lg:min-h-[80vh] flex flex-col md:flex-row items-center justify-center 
-      px-4 md:px-8 lg:px-16 data-scroll-section"
-      data-scroll
+      px-4 md:px-8 lg:px-16"
     >
       <div
         className="text-center mx-10 lg:mx-20 md:text-left md:w-1/2 space-y-4"
-        data-scroll
-        data-scroll-speed="1" 
+        ref={nameRef}
       >
         <h1 className="text-2xl md:text-4xl font-bold text-gray-800 dark:text-white transition-colors duration-300">
           Hi, I'm{" "}
@@ -63,10 +101,10 @@ const Hero: React.FC = () => {
           </a>
         </div>
       </div>
+
       <div
         className="mt-8 md:mt-0 md:w-1/2 flex justify-center"
-        data-scroll
-        data-scroll-speed="2" // Parallax effect for profile image
+        ref={imageRef}
       >
         <img
           src="/profile4.jpg"
