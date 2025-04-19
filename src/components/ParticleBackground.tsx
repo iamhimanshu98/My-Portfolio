@@ -37,7 +37,7 @@ const ParticleBackground: React.FC = () => {
       size: { value: isMobile ? 1.5 : 2.5, random: true },
       shape: { type: "circle" },
       collisions: { enable: false },
-      links: { enable: true },
+      links: { enable: !isMobile },
     },
     detectRetina: !isMobile,
   };
