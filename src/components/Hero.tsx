@@ -1,10 +1,10 @@
 import React, { useEffect, useRef } from "react";
 import Typed from "typed.js";
 import { typedStrings } from "../data/portfolioData";
-import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
+// import gsap from "gsap";
+// import { ScrollTrigger } from "gsap/ScrollTrigger";
 
-gsap.registerPlugin(ScrollTrigger);
+// gsap.registerPlugin(ScrollTrigger);
 
 const Hero: React.FC = () => {
   const typedRef = useRef<HTMLSpanElement>(null);
@@ -26,7 +26,8 @@ const Hero: React.FC = () => {
     };
   }, []);
 
-  // 🚀 Parallax effect using GSAP
+  // 🚫 Parallax effect using GSAP (commented out)
+  /*
   useEffect(() => {
     const nameEl = nameRef.current;
     const imageEl = imageRef.current;
@@ -38,8 +39,8 @@ const Hero: React.FC = () => {
       ease: "none",
       scrollTrigger: {
         trigger: nameEl,
-        start: "top bottom", // when it enters viewport
-        end: "bottom top",   // until it leaves
+        start: "top bottom",
+        end: "bottom top",
         scrub: true,
       },
     });
@@ -59,6 +60,7 @@ const Hero: React.FC = () => {
       ScrollTrigger.getAll().forEach(trigger => trigger.kill());
     };
   }, []);
+  */
 
   return (
     <div
