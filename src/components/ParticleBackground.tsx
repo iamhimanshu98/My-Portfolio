@@ -24,32 +24,32 @@ const ParticleBackground: React.FC = () => {
       color: { value: "#f97316" },
       move: {
         enable: true,
-        speed: isMobile ? 0.6 : 1.0,
+        speed: 1.0,
         angle: { value: 120, offset: 0 },
         direction: "none" as const,
         outModes: { default: "bounce" as const },
       },
       number: {
-        value: isMobile ? 20 : 50,
+        value: 50,
         density: { enable: true, area: 800 },
       },
       opacity: { value: 0.7 },
-      size: { value: isMobile ? 1.5 : 2.5, random: true },
+      size: { value: 2.5, random: true },
       shape: { type: "circle" },
       collisions: { enable: false },
-      links: { enable: !isMobile },
+      links: { enable: true },
     },
-    detectRetina: !isMobile,
+    detectRetina: true,
   };
 
-  return (
+  return !isMobile ? (
     <Particles
       id="orangeParticles"
       init={particlesInit}
       className="absolute inset-0 z-0"
       options={optimizedOrangeParticles}
     />
-  );
+  ) : null;
 };
 
 export default ParticleBackground;
