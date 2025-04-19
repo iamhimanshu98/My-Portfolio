@@ -24,7 +24,7 @@ const ParticleBackground: React.FC = () => {
       color: { value: "#f97316" },
       move: {
         enable: true,
-        speed: 1.0,
+        speed: 1.5,
         angle: { value: 120, offset: 0 },
         direction: "none" as const,
         outModes: { default: "bounce" as const },
