@@ -13,38 +13,20 @@ import Contact from "./components/Contact";
 function App() {
   const [darkMode, toggleDarkMode] = useDarkMode();
   const containerRef = useRef<HTMLDivElement>(null);
-  // const lenisRef = useRef<Lenis | null>(null);
-
-  /*
-  useEffect(() => {
-    if (!containerRef.current) return;
-
-    const lenis = new Lenis({
-      duration: 0.9,
-      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-      touchMultiplier: window.innerWidth <= 768 ? 2.5 : 1.5,
-      smoothWheel: true,
-    });
-
-    function updateScroll(time: number) {
-      lenis.raf(time);
-      requestAnimationFrame(updateScroll);
-    }
-    requestAnimationFrame(updateScroll);
-
-    lenisRef.current = lenis;
-
-    return () => lenis.destroy(); // Clean up on unmount
-  }, []);
-  */
 
   return (
     <>
-      {/* Fixed Navbar (always visible at top) */}
       <Navbar
         darkMode={darkMode}
         toggleDarkMode={toggleDarkMode}
-        scroll={null} // lenisRef.current if uncommented
+        scroll={{
+          scrollTo: (id: string) => {
+            const section = document.querySelector(id);
+            if (section) {
+              section.scrollIntoView({ behavior: "smooth", block: "start" });
+            }
+          },
+        }}
       />
 
       {/* Main Scroll Container */}
