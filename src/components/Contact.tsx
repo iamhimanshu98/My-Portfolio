@@ -21,7 +21,7 @@ const Contact: React.FC = () => {
       .send(
         "service_1yjuefx",
         "template_eq62b4x",
-        { formData, time: new Date().toLocaleString() },
+        { ...formData, time: new Date().toLocaleString() },
         "ToiFjDAo0f9Nv54y3"
       )
       .then(() => {
