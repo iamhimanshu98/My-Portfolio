@@ -11,11 +11,13 @@
   },
   "dependencies": {
     "@studio-freight/lenis": "^1.0.42",
+    "emailjs-com": "^3.2.0",
     "gsap": "^3.12.7",
     "locomotive-scroll": "^4.1.4",
     "lucide-react": "^0.344.0",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
+    "react-hot-toast": "^2.5.2",
     "react-scroll": "^1.9.3",
     "react-tsparticles": "^2.12.2",
     "tailwind-scrollbar-hide": "^2.0.0",

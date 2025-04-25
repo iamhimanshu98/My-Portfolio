@@ -9,6 +9,7 @@ import Experience from "./components/Experience";
 import Skills from "./components/Skills";
 import Projects from "./components/Projects";
 import Contact from "./components/Contact";
+import { Toaster } from "react-hot-toast";
 
 function App() {
   const [darkMode, toggleDarkMode] = useDarkMode();
@@ -61,6 +62,7 @@ function App() {
           </section>
         </div>
       </div>
+      <Toaster position="bottom-center" />
     </>
   );
 }

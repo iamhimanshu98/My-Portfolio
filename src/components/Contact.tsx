@@ -1,6 +1,9 @@
 import React, { useState } from "react";
-import { contactData } from "../data/portfolioData";
+import emailjs from "emailjs-com";
 import { Send } from "lucide-react";
+import { contactData } from "../data/portfolioData";
+import { toast } from "react-hot-toast";
+
 
 const Contact: React.FC = () => {
   const [formData, setFormData] = useState({
@@ -9,9 +12,28 @@ const Contact: React.FC = () => {
     message: "",
   });
 
+  const [loading, setLoading] = useState(false);
+
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    console.log("Form submitted:", formData);
+    setLoading(true);
+
+    emailjs
+      .send(
+        "service_1yjuefx",
+        "template_eq62b4x",
+        formData,
+        "ToiFjDAo0f9Nv54y3"
+      )
+      .then(() => {
+        toast.success("Message sent successfully!");
+        setFormData({ name: "", email: "", message: "" });
+      })
+      .catch((err) => {
+        console.error("EmailJS error:", err);
+        toast.error("Oops! Something went wrong.");
+      })      
+      .finally(() => setLoading(false));
   };
 
   return (
@@ -81,20 +103,19 @@ const Contact: React.FC = () => {
                 Message
               </label>
               <textarea
-              id="message"
-              value={formData.message}
-              onChange={(e) =>
-                setFormData({ ...formData, message: e.target.value })
-              }
-              rows={6}
-              maxLength={320}
-              placeholder="What you want to say?"
-              className="scrollbar-thumb-only w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-600 
+                id="message"
+                value={formData.message}
+                onChange={(e) =>
+                  setFormData({ ...formData, message: e.target.value })
+                }
+                rows={6}
+                maxLength={320}
+                placeholder="What you want to say?"
+                className="scrollbar-thumb-only w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-600 
                 bg-white dark:bg-gray-700 text-gray-900 dark:text-white focus:outline-none focus:ring-1 focus:ring-orange-500 
                 focus:border-transparent transition-colors duration-300 resize-none mb-8 overflow-y-auto"
-              required
-            ></textarea>
-
+                required
+              ></textarea>
             </div>
 
             <button
@@ -102,7 +123,7 @@ const Contact: React.FC = () => {
               className=" bg-orange-600 text-white px-6 py-3 rounded-lg hover:bg-orange-700 dark:hover:text-gray-100 font-semibold
               flex items-center justify-center gap-2 transition-colors duration-300"
             >
-              Send
+              {loading ? "Sending..." : "Send"}
               <Send className="w-4 h-4" />
             </button>
           </form>
