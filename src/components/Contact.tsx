@@ -4,7 +4,6 @@ import { Send } from "lucide-react";
 import { contactData } from "../data/portfolioData";
 import { toast } from "react-hot-toast";
 
-
 const Contact: React.FC = () => {
   const [formData, setFormData] = useState({
     name: "",
@@ -22,7 +21,7 @@ const Contact: React.FC = () => {
       .send(
         "service_1yjuefx",
         "template_eq62b4x",
-        formData,
+        { formData, time: new Date().toLocaleString() },
         "ToiFjDAo0f9Nv54y3"
       )
       .then(() => {
@@ -32,7 +31,7 @@ const Contact: React.FC = () => {
       .catch((err) => {
         console.error("EmailJS error:", err);
         toast.error("Oops! Something went wrong.");
-      })      
+      })
       .finally(() => setLoading(false));
   };
 
