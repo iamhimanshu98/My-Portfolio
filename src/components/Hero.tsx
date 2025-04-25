@@ -26,42 +26,6 @@ const Hero: React.FC = () => {
     };
   }, []);
 
-  // 🚫 Parallax effect using GSAP (commented out)
-  /*
-  useEffect(() => {
-    const nameEl = nameRef.current;
-    const imageEl = imageRef.current;
-
-    if (!nameEl || !imageEl) return;
-
-    gsap.to(nameEl, {
-      y: -30,
-      ease: "none",
-      scrollTrigger: {
-        trigger: nameEl,
-        start: "top bottom",
-        end: "bottom top",
-        scrub: true,
-      },
-    });
-
-    gsap.to(imageEl, {
-      y: -50,
-      ease: "none",
-      scrollTrigger: {
-        trigger: imageEl,
-        start: "top bottom",
-        end: "bottom top",
-        scrub: true,
-      },
-    });
-
-    return () => {
-      ScrollTrigger.getAll().forEach(trigger => trigger.kill());
-    };
-  }, []);
-  */
-
   return (
     <div
       id="home"
@@ -80,7 +44,7 @@ const Hero: React.FC = () => {
           <span className="text-4xl md:text-5xl">Kumawat</span>
         </h1>
         <p className="text-2xl md:text-2xl text-gray-700 dark:text-gray-300 transition-colors duration-300">
-          I'm a{" "}
+          {" "}
           <span
             ref={typedRef}
             className="text-orange-600 dark:text-orange-500 transition-colors duration-300"
