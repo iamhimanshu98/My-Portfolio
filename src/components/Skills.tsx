@@ -38,7 +38,7 @@ const Skills: React.FC = () => {
   return (
     <div
       id="skills"
-      className="py-20 px-4 md:px-8 lg:px-16 transition-colors duration-300"
+      className="py-16 px-4 md:px-8 lg:px-16 transition-colors duration-300"
     >
       <h2 className="text-3xl font-bold text-center mb-8 text-gray-800 dark:text-white transition-colors duration-300 flex items-center justify-center gap-2">
         <Award className="w-8 h-8 text-orange-600" />
