@@ -15,7 +15,7 @@ const Navbar: React.FC<NavbarProps> = ({
   const [isAtTop, setIsAtTop] = useState(true);
   const [showNavbar, setShowNavbar] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
-
+  const [manualScroll, setManualScroll] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   useEffect(() => {
@@ -24,23 +24,28 @@ const Navbar: React.FC<NavbarProps> = ({
 
       setIsAtTop(currentScrollY < 100);
 
-      if (currentScrollY > lastScrollY && currentScrollY > 200) {
-        setShowNavbar(false);
-      } else {
-        setShowNavbar(true);
+      if (!manualScroll) {
+        if (currentScrollY > lastScrollY && currentScrollY > 200) {
+          setShowNavbar(false);
+        } else {
+          setShowNavbar(true);
+        }
       }
-
       setLastScrollY(currentScrollY);
     };
 
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
-  }, [lastScrollY]);
+  }, [lastScrollY, manualScroll]);
 
   const handleScrollToSection = (id: string) => {
+    setManualScroll(true); 
+
     if (scroll && scroll.scrollTo) {
       scroll.scrollTo(`#${id}`);
     }
+
+    setTimeout(() => setManualScroll(false), 1000); 
     setMobileMenuOpen(false);
   };
 

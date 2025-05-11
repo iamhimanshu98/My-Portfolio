@@ -1,10 +1,6 @@
 import React, { useEffect, useRef } from "react";
 import Typed from "typed.js";
 import { typedStrings } from "../data/portfolioData";
-// import gsap from "gsap";
-// import { ScrollTrigger } from "gsap/ScrollTrigger";
-
-// gsap.registerPlugin(ScrollTrigger);
 
 const Hero: React.FC = () => {
   const typedRef = useRef<HTMLSpanElement>(null);
@@ -60,18 +56,17 @@ const Hero: React.FC = () => {
           </a>
           <a
             href="/resume.pdf"
+            target="_blank"
+            rel="noopener noreferrer"
             className="border border-orange-600 text-orange-600 dark:text-orange-500 px-6 py-2 rounded-lg 
-            hover:bg-orange-50 dark:hover:bg-gray-800 transition-all duration-300"
+                hover:bg-orange-50 dark:hover:bg-gray-800 transition-all duration-300"
           >
             View Resume
           </a>
         </div>
       </div>
 
-      <div
-        className="mt-8 md:mt-0 md:w-1/2 flex justify-center"
-        ref={imageRef}
-      >
+      <div className="mt-8 md:mt-0 md:w-1/2 flex justify-center" ref={imageRef}>
         <img
           src="/profile4.jpg"
           alt="Profile"
