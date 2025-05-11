@@ -6,7 +6,7 @@ const Experience: React.FC = () => {
   return (
     <div
       id="experience"
-      className="pt-8 pb-16 px-4 md:px-8 lg:px-16 bg-gray-50/50 dark:bg-gray-800/30 transition-colors duration-300"
+      className="pt-20 pb-16 px-4 md:px-8 lg:px-16 bg-gray-50/50 dark:bg-gray-800/30 transition-colors duration-300"
     >
       <h2 className="text-3xl font-bold text-center mb-8 text-gray-800 dark:text-white transition-colors duration-300 flex items-center justify-center gap-2">
         <Briefcase className="w-8 h-8 text-orange-600" />
