@@ -41,8 +41,11 @@ const Navbar: React.FC<NavbarProps> = ({
   const handleScrollToSection = (id: string) => {
     setManualScroll(true);
 
-    if (scroll && scroll.scrollTo) {
-      scroll.scrollTo(`#${id}`);
+    const element = document.getElementById(id);
+    if (element) {
+      const yOffset = id === "home" ? -80 : -30;
+      const y = element.getBoundingClientRect().top + window.scrollY + yOffset;
+      window.scrollTo({ top: y, behavior: "smooth" });
     }
 
     setTimeout(() => setManualScroll(false), 1000);
