@@ -39,13 +39,13 @@ const Navbar: React.FC<NavbarProps> = ({
   }, [lastScrollY, manualScroll]);
 
   const handleScrollToSection = (id: string) => {
-    setManualScroll(true); 
+    setManualScroll(true);
 
     if (scroll && scroll.scrollTo) {
       scroll.scrollTo(`#${id}`);
     }
 
-    setTimeout(() => setManualScroll(false), 1000); 
+    setTimeout(() => setManualScroll(false), 1000);
     setMobileMenuOpen(false);
   };
 
@@ -63,7 +63,7 @@ const Navbar: React.FC<NavbarProps> = ({
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between h-16 items-center">
           <a
-            href="#home"
+            href="/"
             className="text-2xl font-bold text-gray-800 dark:text-white transition-colors duration-300"
             onClick={() => handleScrollToSection("home")}
           >
