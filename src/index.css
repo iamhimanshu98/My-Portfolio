@@ -33,6 +33,18 @@ html, body{
   }
 }
 
+/* Add this to your globals.css or index.css */
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.animate-spin {
+  animation: spin 1s linear infinite;
+}
+
+
 /* Ensure Locomotive Scroll bar visibility */
 html.has-scroll-init .c-scrollbar {
   z-index: 100 !important;

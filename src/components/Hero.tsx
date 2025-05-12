@@ -1,6 +1,7 @@
 import React, { useEffect, useRef } from "react";
 import Typed from "typed.js";
 import { typedStrings } from "../data/portfolioData";
+import { motion } from "framer-motion"; // Import motion from framer-motion
 
 const Hero: React.FC = () => {
   const typedRef = useRef<HTMLSpanElement>(null);
@@ -32,20 +33,32 @@ const Hero: React.FC = () => {
         className="text-center mx-10 lg:mx-20 md:text-left md:w-1/2 space-y-4"
         ref={nameRef}
       >
-        <h1 className="text-2xl md:text-4xl font-bold text-gray-800 dark:text-white transition-colors duration-300">
+        <motion.h1
+          className="text-2xl md:text-4xl font-bold text-gray-800 dark:text-white transition-colors duration-300"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1 }}
+        >
           Hi, I'm{" "}
           <span className="block text-5xl md:text-6xl text-orange-600 dark:text-orange-500 transition-colors duration-300">
             Himanshu
           </span>
           <span className="text-4xl md:text-5xl">Kumawat</span>
-        </h1>
-        <p className="text-2xl md:text-2xl text-gray-700 dark:text-gray-300 transition-colors duration-300">
+        </motion.h1>
+
+        <motion.p
+          className="text-2xl md:text-2xl text-gray-700 dark:text-gray-300 transition-colors duration-300"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1, delay: 0.2 }}
+        >
           {" "}
           <span
             ref={typedRef}
             className="text-orange-600 dark:text-orange-500 transition-colors duration-300"
           ></span>
-        </p>
+        </motion.p>
+
         <div className="flex flex-wrap gap-4 justify-center md:justify-start">
           <a
             href="/resume.pdf"
@@ -66,13 +79,22 @@ const Hero: React.FC = () => {
         </div>
       </div>
 
-      <div className="mt-8 md:mt-0 md:w-1/2 flex justify-center" ref={imageRef}>
+      <motion.div
+        className="mt-8 md:mt-0 md:w-1/2 flex justify-center"
+        ref={imageRef}
+        initial={{ opacity: 0, y: -50 }} // Start above and hidden
+        animate={{ opacity: 1, y: 0 }} // Fade in and move to original position
+        transition={{
+          duration: 0.5, // Smooth transition
+          delay: 0.2, // Slight delay for sequencing
+        }}
+      >
         <img
           src="/profile4.jpg"
           alt="Profile"
           className="w-64 h-64 lg:w-72 lg:h-72 rounded-full object-cover shadow-xl ring-4 ring-orange-200 dark:ring-orange-100 transition-all duration-300"
         />
-      </div>
+      </motion.div>
     </div>
   );
 };
