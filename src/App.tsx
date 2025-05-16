@@ -23,8 +23,6 @@ function App() {
 
   return (
     <>
-      {/* Keep the Particle Background visible during loading */}
-      {/* Show Loader during the loading state */}
       {isLoading && (
         <div className="absolute top-0 left-0 w-full h-full z-50 flex items-center justify-center">
           <Loader darkMode={darkMode} isVisible={isLoading} />
