@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
-import ParticleBackground from "./ParticleBackground";
 
-const greetings = ["Hello", "नमस्ते", "Ciao", "こんにちは"];
+const greetings = ["Hello", "नमस्ते", "Welcome", "こんにちは"];
 const directions = ["from-top", "from-left", "from-right", "from-bottom"];
 
 const darkModeColors = [
